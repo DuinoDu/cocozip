@@ -27,7 +27,7 @@ setup(
     long_description=readme,
     author='user',
     author_email='duino472365351@gmail.com',
-    url='https://github.com/user/cocozip',
+    url='https://github.com/duinodu/cocozip',
     license=license,
     platform='linux',
     zip_safe=False,

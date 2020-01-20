@@ -3,7 +3,7 @@ build:
 	python setup.py build
 
 upload:
-	python setup.py bdist_wheel upload -r hobot-local
+	python setup.py bdist_wheel upload
 
 clean:
 	@rm -rf build dist src/*.egg-info
