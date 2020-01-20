@@ -26,6 +26,16 @@ class BasicTestSuite(unittest.TestCase):
             print(img.shape, img2.shape)
             break
 
+    def test_imread_hdfs(self):
+        coco_anno = '/home/public_data/min.du/coco2017/annotations/instances_val2017.json'
+        zip_file = 'hdfs://hobot-bigdata/user/min.du/gpu004/public/coco/zip/val2017.zip'
+        coco = COCO(coco_anno)
+        image_ids = coco.getImgIds()
+        for index in image_ids[:100]:
+            file_name = '%012d.jpg' % index
+            img = cocozip.imread(file_name, zip_file=zip_file)
+        os.system('rm val2017.zip')
+
     def test_imread_speed(self):
         coco_anno = '/home/public_data/min.du/coco2017/annotations/instances_train2017.json'
         imgdir = '/home/public_data/min.du/coco2017/images/train2017'

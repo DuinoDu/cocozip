@@ -17,10 +17,6 @@ class CocoDetection(torchvision.datasets.coco.CocoDetection):
         super(CocoDetection, self).__init__(root, annFile,
                 transform, target_transform, transforms)
         self.zip_file = zip_file
-        if zip_file.startswith('hdfs://'):
-            cmd = 'hdfs fs -get %s' % zip_file
-            os.system(cmd)
-            self.zip_file = os.path.basename(zip_file)
 
     def __getitem__(self, index):
         try:

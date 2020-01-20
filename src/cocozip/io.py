@@ -35,6 +35,14 @@ def imread(filename, flags=cv2.IMREAD_COLOR, zip_file=None):
         path_zip = path[0: pos_at]
         path_img = zip_name + path[pos_at + 1:]
 
+    if path_zip.startswith('hdfs://'):
+        _path_zip = os.path.basename(path_zip)
+        if not os.path.exists(_path_zip):
+            cmd = 'hadoop fs -get %s' % path_zip
+            print(cmd)
+            os.system(cmd)
+        path_zip = _path_zip
+
     if not os.path.isfile(path_zip):
         print("zip file '%s' is not found"%(path_zip))
         assert 0
