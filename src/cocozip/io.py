@@ -35,6 +35,7 @@ def imread(filename, flags=cv2.IMREAD_COLOR, zip_file=None):
         path_zip = path[0: pos_at]
         path_img = zip_name + path[pos_at + 1:]
 
+    assert path_zip is not None
     if path_zip.startswith('hdfs://'):
         _path_zip = os.path.basename(path_zip)
         if not os.path.exists(_path_zip):
@@ -51,6 +52,7 @@ def imread(filename, flags=cv2.IMREAD_COLOR, zip_file=None):
             data = _im_zfile[i]['zipfile'].read(path_img)
             return cv2.imdecode(np.frombuffer(data, np.uint8), flags)
 
+    print("creating reader for %s" % path_zip)
     _im_zfile.append({
         'path': path_zip,
         'zipfile': zipfile.ZipFile(path_zip, 'r')
