@@ -11,7 +11,7 @@ __all__ = ['imread']
 _im_zfile = []
 
 
-def imread(filename, flags=cv2.IMREAD_COLOR, zip_file=None):
+def imread(filename, zipfile=None, flags=cv2.IMREAD_COLOR):
     """
     Example: 
         xxx/train2017.zip@/000003945212.jpg
